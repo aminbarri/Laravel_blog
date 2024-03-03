@@ -1,0 +1,30 @@
+.navbar {
+    background-color: #151a3a;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.login{
+    float: right;
+    
+}
+.container-fluid>a{
+    text-decoration: none;
+    margin-left: 5px;
+    color: white;
+}
+.logo{
+    color: black;
+}
+.footer{
+    background-color: #151a3a;
+    color: aliceblue;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 25px;
+}
+.footer>p{
+    text-align: center;
+}
