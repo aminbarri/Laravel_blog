@@ -66,7 +66,22 @@
     background-color: #151a3a;
 }
 .second_section{
-   
+    padding-top: 21px;
 
 
+}
+.hover-bg{
+    background-color: #c8cad1;
+
+}
+.hover-bg>a{
+    color: white;
+}
+.hover-bg:hover{
+    background-color: rgb(202, 138, 59);
+}
+.picz{
+    height: 100vh;
+    width: 50vw;
+    background-size: cover;
 }
