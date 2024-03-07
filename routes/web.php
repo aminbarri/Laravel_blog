@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PagesConlroller;
+use App\Http\Controllers\Postcontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PagesConlroller::class ,'index']);
+Route::resource('/blog' ,Postcontroller::class);

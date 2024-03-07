@@ -15,9 +15,12 @@
     <div class="navbar navbar-expand-lg ">
         <div class="container">
         <div class="container-fluid">
+            
             <a href="#"  class=" logo nav-item">My Site</a>
-            <a href="#" class="nav-item login">Sign In</a>
-            <a href="#" class="nav-item login">Sign Up</a>
+            <a href="#" class="nav-item login px-2 ">Sign In</a>
+            <a href="#" class="nav-item login px-2">Sign Up</a>
+            <a href="/blog"  class=" nav-item px-2 login">bolg</a>
+            
         </div>
         </div>
         

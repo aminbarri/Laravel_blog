@@ -14,9 +14,16 @@
     margin-left: 5px;
     color: white;
 }
+:root {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+
+  }
+
 .logo{
     color: black;
 }
+
 .footer{
     background-color: #151a3a;
     color: aliceblue;
@@ -53,13 +60,20 @@
     font-weight: bolder;
 }
 .start_reading{
-    background-color: white;
+    background-color: #0E292F;
     padding: 15px;
     border-radius: 3px;
     text-decoration: none;
-    color: black;
+    color: white;
     
     font-size: large;
+}
+.read_moreart{
+    background-color: #0E292F;
+    color: white;
+}
+.categories{
+    background-color: #44E5E7;
 }
 .start_reading:hover{
     color: white;
@@ -71,17 +85,23 @@
 
 }
 .hover-bg{
-    background-color: #c8cad1;
+    background-color: #10172d;
 
 }
 .hover-bg>a{
     color: white;
 }
 .hover-bg:hover{
-    background-color: rgb(202, 138, 59);
+    background-color:#36487f;
 }
 .picz{
-    height: 100vh;
-    width: 50vw;
+    height: 70vh;
+    width: 100vw;
     background-size: cover;
 }
+.image-cover {
+    width: 100%;
+      height: 300px; /* Adjust the height as needed */
+      object-fit: cover;
+      object-position: center;
+  }
