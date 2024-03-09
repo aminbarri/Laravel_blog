@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="d-flex m-0 p-0 col-sm-6">
-                <img class="picz" src="https://picsum.photos/id/237/200/300" alt="">
+                <img class="picz" src="https://picsum.photos/id/784/200/300" alt="">
             </div>
      </div>
     </div>

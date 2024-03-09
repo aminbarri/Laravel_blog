@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+
 
 class Postcontroller extends Controller
 {
@@ -13,7 +17,8 @@ class Postcontroller extends Controller
      */
     public function index()
     {
-        return view('blog.index');
+        return view('blog.index')
+        ->with('posts', Post::get() );
     }
 
     /**
@@ -23,7 +28,7 @@ class Postcontroller extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -34,7 +39,25 @@ class Postcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' =>'required',
+            'description'=>'required',
+            'image'=>'required|mimes:jpg,png,jped|max:5048'
+
+        ]);
+        $slug = Str::slug($request-> title,'-');
+        $newImageName = uniqid(). '-'.$slug. '.' . $request->image->extension(); 
+        $request->image->move(public_path('img'),$newImageName);
+        
+        POST::create([
+            'title' =>$request ->input('title'),
+            'slug'=>$slug,
+            'description' =>$request ->input('title'),
+            'image_path' =>'img/'. $newImageName,
+            'user_id'=> auth()->User()->id,
+
+        ]);
+        return redirect('/blog');
     }
 
     /**
