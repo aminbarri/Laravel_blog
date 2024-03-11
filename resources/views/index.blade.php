@@ -13,14 +13,14 @@
     <div class="container">
         <div class=" second_section row m-0 mt-5 mb-5 m-md-3" id="startreading">
             <div class="col-12 col-sm-6 img_art ">
-                <img class="col-12 col-sm-6 border-radius-sm" src="https://picsum.photos/1024/1024" alt="">
+                <img class="col-12 col-sm-6 border-radius-sm" src="{{ asset('img/'.$lastInserted->image_path) }}" alt="">
             </div>
             <div class="col-12 col-sm-6 d-flex flex-column justify-content-start align-items-start align-self-center">
-                <h3 class="p-2 p-sm-0">Change the gutters </h3>
-                <p class="">Classes are built from the $gutters Sass map which is inherited from the $spacers Sass map.</p>
+                <h3 class="p-2 p-sm-0">{{$lastInserted->title}} </h3>
+                <p class=""> {{ Str::limit($lastInserted->description, 250) }}</p>
                 
     
-                <a href="/" class="read_moreart rounded-1 p-2  text-decoration-none icon-link icon-link-hover">
+                <a href="blog/{{$lastInserted ->slug}}" class="read_moreart rounded-1 p-2  text-decoration-none icon-link icon-link-hover">
                 read more!</a>
             </div>
         </div>

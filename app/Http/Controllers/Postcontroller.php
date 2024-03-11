@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -18,7 +21,8 @@ class Postcontroller extends Controller
     public function index()
     {
         return view('blog.index')
-        ->with('posts', Post::get() );
+        ->with('posts', Post::get() )
+      ;
     }
 
     /**
@@ -52,8 +56,8 @@ class Postcontroller extends Controller
         POST::create([
             'title' =>$request ->input('title'),
             'slug'=>$slug,
-            'description' =>$request ->input('title'),
-            'image_path' =>'img/'. $newImageName,
+            'description' =>$request ->input('description'),
+            'image_path' =>$newImageName,
             'user_id'=> auth()->User()->id,
 
         ]);
@@ -66,9 +70,10 @@ class Postcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        return view('blog.show')
+        ->with('post',Post::where('slug',$slug)->first());
     }
 
     /**
@@ -77,9 +82,10 @@ class Postcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        return view('blog.edit')
+        ->with('post',Post::where('slug',$slug)->first());
     }
 
     /**
@@ -89,9 +95,42 @@ class Postcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $slug)
+    {  
+        $request->validate([
+            'title' =>'required',
+            'description'=>'required',
+            'image'=>'mimes:jpg,png,jped|max:5048'
+
+        ]);
+        $slug = Str::slug($request-> title,'-');
+        if($request->hasFile('image')){
+        $newImageName = uniqid(). '-'.$slug. '.' . $request->image->extension(); 
+        $request->image->move(public_path('img'),$newImageName);
+        }
+        else{
+            $newImageName  =null;
+        }
+        
+     
+            POST::where('slug' , $slug)
+            ->update([
+                'title' =>$request ->input('title'),
+                'slug'=>$slug,
+                'description' =>$request ->input('description'),
+                
+                'user_id'=> auth()->User()->id,
+    
+            ]);
+            if($newImageName){
+                POST::where('slug' ,$slug)
+                ->update([
+                    'image_path' =>'img/'. $newImageName,
+                ]);
+        }
+       
+        return redirect()->to('/blog/'.$slug)
+        ->with('message','the post has been edited');
     }
 
     /**
@@ -100,8 +139,11 @@ class Postcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        POST::where('slug' , $slug)
+        ->delete();
+        return redirect()->to('/blog')
+        ->with('message','the post has been Deleted');
     }
 }

@@ -8,6 +8,9 @@
     <link   href="resources\css\style.css" rel="stylesheet" >
     <link   href="..\resources\css\style.css" rel="stylesheet" >
     <link href="..\resources\css\bootstrap.min.css" rel="stylesheet"  >
+    <link   href="..\..\resources\css\style.css" rel="stylesheet" >
+    
+    <link href="..\..\resources\css\bootstrap.min.css" rel="stylesheet"  >
     
     <style>
       
@@ -28,7 +31,7 @@
                 
                    
                     <a href="{{ route('logout') }}" class="nav-item login px-2">Logout</a>
-            
+                    <a href="" class="nav-item login px-2">{{$user->name}}</a>
             @endguest 
             
             
